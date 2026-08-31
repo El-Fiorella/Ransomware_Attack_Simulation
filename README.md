@@ -15,3 +15,20 @@ A controlled cybersecurity demonstration of a Python-based ransomware payload. T
 * **Language:** Python 3
 * **Environment:** Isolated Linux/VM Lab Environment
 * **Concepts:** Cryptographic Operations, Malware Analysis, Behavioral Detection
+
+  ## Code Example (Payload Excerpt)
+
+```python
+# ---2. Scramble and Password Protect (Encryption) ---         
+         
+#def encrypt_file(): 
+    # Read the original text 
+    with open("Milestone_1_Payload.txt", "r") as f: 
+        original_text = f.read() 
+     
+    # Scramble: Reverse the text (Reversible by running again) 
+    scrambled = original_text[::-1] 
+     
+    with open("Milestone_1_Payload.txt", "w") as f: 
+        f.write(scrambled)
+```
