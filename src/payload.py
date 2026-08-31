@@ -5,7 +5,7 @@ import time
 # Command used for the 30-second delay 
 import webbrowser    # Command used to open 9gag.com 
 from tkinter import messagebox, Tk # Used for the ransomware popups 
-#--- 1. Create Payload File --- 
+#--- 1. Create Payload File ---
 #def create_target_file(): 
 # Below are the 5 paragraphs of text from lipsum.com 
 content = """[ What is Lorem Ipsum? 
