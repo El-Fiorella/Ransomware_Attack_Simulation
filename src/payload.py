@@ -1,0 +1,103 @@
+#!/usr/bin/env python3 
+import os            
+import time          
+# Command used for system commands like logout 
+# Command used for the 30-second delay 
+import webbrowser    # Command used to open 9gag.com 
+from tkinter import messagebox, Tk # Used for the ransomware popups 
+#--- 1. Create Payload File --- 
+#def create_target_file(): 
+# Below are the 5 paragraphs of text from lipsum.com 
+content = """[ What is Lorem Ipsum? 
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
+the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of 
+type and scrambled it to make a type specimen book. It has survived not only five centuries, but 
+also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in 
+the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently 
+with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. 
+Why do we use it? 
+It is a long established fact that a reader will be distracted by the readable content of a page when 
+looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal 
+distribution of letters, as opposed to using 'Content here, content here', making it look like 
+readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum 
+as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their 
+infancy. Various versions have evolved over the years, sometimes by accident, sometimes on 
+purpose (injected humour and the like).  
+Where does it come from? 
+Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of 
+classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin 
+professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, 
+consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical 
+literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 
+1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 
+45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first 
+line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32. 
+The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those 
+interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also 
+reproduced in their exact original form, accompanied by English versions from the 1914 translation 
+by H. Rackham. 
+Where can I get some? 
+There are many variations of passages of Lorem Ipsum available, but the majority have suffered 
+alteration in some form, by injected humour, or randomised words which don't look even slightly 
+believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't 
+anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet 
+tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. 
+It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, 
+to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always 
+free from repetition, injected humour, or non-characteristic words etc. ]""" 
+    with open("Milestone_1_Payload.txt", "w") as f: 
+        f.write(content) 
+         
+# ---2. Scramble and Password Protect (Encryption) ---         
+         
+#def encrypt_file(): 
+    # Read the original text 
+    with open("Milestone_1_Payload.txt", "r") as f: 
+        original_text = f.read() 
+     
+    # Scramble: Reverse the text (Reversible by running again) 
+    scrambled = original_text[::-1] 
+     
+    with open("Milestone_1_Payload.txt", "w") as f: 
+        f.write(scrambled) 
+     
+    # Password protect into a ZIP using the system's zip tool 
+    # Password is : Wednesd@y2025 
+    os.system('zip -P Wednesd@y2025 Milestone_1_Payload.zip Milestone_1_Payload.txt') 
+     
+    # Remove the unzipped file to simulate 'locking' the user out 
+    os.remove("Milestone_1_Payload.txt") 
+    
+# --- 3. Trigger popups and web link --- 
+     
+#def show_warnings(): 
+    root = Tk() 
+    root.withdraw() # Hide the main tiny Tkinter window 
+     
+    # Realistic Ransomware Popup 
+    messagebox.showerror("!!! SYSTEM ENCRYPTED !!!", "Your personal files are now scrambled. 
+Send 0.1 BTC to recover access.") 
+     
+    # Malicious Program Popup 
+    messagebox.showwarning("Warning", "Backdoor established. System logs are being 
+uploaded...") 
+     
+    # Open 9gag.com 
+    webbrowser.open("https://9gag.com/") 
+    root.destroy() 
+     
+# --- 4. System logout --- 
+     
+#def final_countdown(): 
+    # Wait for 30 seconds as required 
+    time.sleep(30) 
+    # Force logout for Kali Linux 
+    os.system("pkill -u $(whoami)") 
+     
+#--- Main Execution --- 
+     
+#if __name__ == "__main__": 
+    create_target_file() 
+    encrypt_file() 
+    show_warnings() # This function opens the popups 
+   # final_countdown()  # This function waits 30s THEN logs out
